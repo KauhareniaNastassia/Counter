@@ -1,0 +1,10 @@
+.counter_wrapper {
+    padding: 20px;
+    background-color: pink;
+    margin: 0 20px;
+    width: 25%;
+}
+
+.display_wrapper {
+    padding: 10px 0;
+}
