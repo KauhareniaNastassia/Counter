@@ -1,83 +1,78 @@
 import React, {useEffect, useState} from 'react';
-import logo from './logo.svg';
 import './App.css';
 import {Counter} from "./components/Counter/Counter";
 import {Settings} from "./components/Settings/Settings";
 
 function App() {
 
-    const [startCounterValue, setStartCounterValue] = useState(0)
-    const [maxCounterValue, setMaxCounterValue] = useState(0)
-    const [counterValue, setCounterValue] = useState(0)
-    const [error, setError] = useState('')
-    const [disabledSetBtn, setDisabledSetBtn] = useState(false)
-    const [disabledIncBtn, setDisabledIncBtn] = useState(false)
-    const [disabledResetBtn, setDisabledResetBtn] = useState(false)
+    const initialValue = localStorage.getItem('value')
+    const initialStartValue = localStorage.getItem('startCounterValue')
+    const initialMaxValue = localStorage.getItem('maxCounterValue')
 
-    useEffect( () => {
-        if (startCounterValue < 0) {
-            setError('This shit should be bigger than 0!')
-            setStartCounterValue(0)
-            setDisabledSetBtn(true)
-            setDisabledIncBtn(true)
-        }
+
+    const [startCounterValue, setStartCounterValue] = useState(initialStartValue !== null ? +initialStartValue : 0)
+    const [maxCounterValue, setMaxCounterValue] = useState(initialMaxValue !== null ? +initialMaxValue : 0)
+    const [counterValue, setCounterValue] = useState(initialValue !== null ? +initialValue : 0)
+    const [error, setError] = useState('')
+    const [disabledSetBtn, setDisabledSetBtn] = useState(true)
+    const [disabledIncBtn, setDisabledIncBtn] = useState(initialValue !== null ? false : true)
+    const [disabledResetBtn, setDisabledResetBtn] = useState(true)
+
+
+    useEffect(() => {
+        localStorage.setItem('value', JSON.stringify(counterValue))
+    }, [counterValue])
+
+
+    useEffect(() => {
         if (startCounterValue === maxCounterValue) {
-            setError('This shit shouldn\'t be equal!')
+            setError('This shit shouldn\'t be equal!') //покрасить красным инпуты
             setDisabledSetBtn(true)
         }
         if (maxCounterValue < startCounterValue) {
             setError('Oh, no, max value should be bigger!')
             setDisabledSetBtn(true)
         }
-        if (maxCounterValue < 0) {
-            setError('This shit should be bigger than 0 too!')
-            setMaxCounterValue(0)
-            setDisabledSetBtn(true)
+        if (startCounterValue < 0) {
+            setError('This shit should be bigger than 0!')
+            setStartCounterValue(-1) //добавить стиль, чтоб красным ругнулось
+             setDisabledSetBtn(true)
         }
-    }, [startCounterValue, maxCounterValue] )
+    }, [startCounterValue, maxCounterValue])
 
-useEffect( () => {
-    setDisabledResetBtn(true)
-}, [] )
 
-    useEffect( () => {
-        if (counterValue === maxCounterValue) {
+    useEffect(() => {
+        if (counterValue === maxCounterValue && counterValue>0) {
             setDisabledIncBtn(true)
+            setDisabledResetBtn(false)
         }
-    }, [counterValue, maxCounterValue])
-
+    }, [initialValue, initialMaxValue])
 
 
     const counterStyle = counterValue === maxCounterValue ? 'error' : ''
-    /*const changeStartCounterValue = (newStartValue: number) => {
-        setStartCounterValue(newStartValue)
-        setError('enter values and press \'set\'')
-    }
 
-    const changeMaxCounterValue = (newMaxValue: number) => {
-        setMaxCounterValue(newMaxValue)
-        setError('enter values and press \'set\'')
-    }*/
 
     const applySettings = () => {
         setError('')
         setCounterValue(startCounterValue)
-        setDisabledSetBtn(true)
         setDisabledIncBtn(false)
-        setDisabledResetBtn(true)
+        setDisabledSetBtn(true)
+        localStorage.setItem('startCounterValue', JSON.stringify(startCounterValue))
+        localStorage.setItem('maxCounterValue', JSON.stringify(maxCounterValue))
     }
 
     const incCounterValue = () => {
         setDisabledResetBtn(false)
-            setCounterValue(counterValue + 1)
-    } //buttonsCallback
+        setCounterValue(counterValue + 1)
+    }
 
     const resetCounterValue = () => {
-        /*setDisabledResetBtn(true)*/
         setDisabledIncBtn(false)
         setDisabledResetBtn(true)
+        /*
+         */
         setCounterValue(startCounterValue)
-    }//buttonsCallback
+    }
 
     return (
         <div className="App">
@@ -94,7 +89,6 @@ useEffect( () => {
                 disabledIncBtn={disabledIncBtn}
                 setDisabledResetBtn={setDisabledResetBtn}
                 disabledResetBtn={disabledResetBtn}
-
             />
 
             <Counter

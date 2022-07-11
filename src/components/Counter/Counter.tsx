@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import Button from "../Button";
 import {Display} from "./Display";
 import css from './Counter.module.css'
@@ -19,9 +19,6 @@ type CounterPropsType = {
 
 export const Counter = (props: CounterPropsType) => {
 
-    /*useEffect( () => {
-
-    }, [props.startCounterValue, props.counterValue, props.maxCounterValue] )*/
 
     return (
         <div className={css.counter_wrapper}>
@@ -37,7 +34,6 @@ export const Counter = (props: CounterPropsType) => {
                     name={'inc'}
                     onClick={props.incCounterValue}
                     disabled={props.disabledIncBtn}
-
                 />
                 <Button
                     name={'reset'}

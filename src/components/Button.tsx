@@ -4,10 +4,9 @@ type ButtonPropsType = {
     name: string
 }
 
-
 export const Button = ({name, ...props}: ButtonPropsType & ButtonHTMLAttributes<any>) => {
     return (
-            <button {...props}> {name} </button>
+            <button {...props}>{name}</button>
     );
 };
 
