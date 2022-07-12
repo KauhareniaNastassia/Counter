@@ -2,6 +2,7 @@ import React from 'react';
 import Button from "../Button";
 import {Display} from "./Display";
 import css from './Counter.module.css'
+import {deepStrictEqual} from "assert";
 
 type CounterPropsType = {
     value: number
@@ -9,15 +10,28 @@ type CounterPropsType = {
     resetCounterValue: () => void
     error: string
     counterStyle: string
-    counterValue: number
     maxCounterValue: number
     startCounterValue: number
-    disabledIncBtn: boolean
-    disabledResetBtn: boolean
 }
 
 
 export const Counter = (props: CounterPropsType) => {
+    let disReset;
+
+    if (props.error || props.startCounterValue === props.value) {
+        disReset = true
+    }else{
+        disReset = false
+    }
+
+    let disInc;
+
+    if (props.error || props.maxCounterValue === props.value) {
+        disInc =true
+    } else {
+        disInc = false
+    }
+
 
 
     return (
@@ -33,12 +47,12 @@ export const Counter = (props: CounterPropsType) => {
                 <Button
                     name={'inc'}
                     onClick={props.incCounterValue}
-                    disabled={props.disabledIncBtn}
+                    disabled={disInc}
                 />
                 <Button
                     name={'reset'}
                     onClick={props.resetCounterValue}
-                    disabled={props.disabledResetBtn}
+                    disabled={disReset}
                 />
             </div>
 
