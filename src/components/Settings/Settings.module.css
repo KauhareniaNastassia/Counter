@@ -1,8 +1,42 @@
 
 .settings_wrapper {
-    padding: 20px;
-    background-color: hotpink;
+    padding: 10px;
+    background-color: #575E97;
     margin: 0 20px;
-    width: 25%;
+    width: 300px;
+    border-radius: 5px;
+    border: 2px solid #E2859A;
+}
 
+.values {
+    display: flex;
+    flex-direction: column;
+
+    padding: 5px 40px 10px 40px;
+    border: 1px solid #E2859A;
+    border-radius: 5px;
+    height: 50px;
+}
+
+.value {
+    display: flex;
+    justify-content: space-between;
+    font-family: LiSu;
+    align-items: center;
+    margin-top: 5px;
+
+}
+
+.input {
+    width: 100px;
+    border: none;
+    background-color: #F5D7DF;
+}
+
+.btn {
+    margin-top: 10px;
+    background-color: #E2859A;
+    border: none;
+    border-radius: 3px;
+    color: #575E94;
 }

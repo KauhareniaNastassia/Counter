@@ -17,7 +17,6 @@ type CounterPropsType = {
 
 export const Counter = (props: CounterPropsType) => {
     let disReset;
-
     if (props.error || props.startCounterValue === props.value) {
         disReset = true
     }else{
@@ -25,7 +24,6 @@ export const Counter = (props: CounterPropsType) => {
     }
 
     let disInc;
-
     if (props.error || props.maxCounterValue === props.value) {
         disInc =true
     } else {
@@ -43,13 +41,15 @@ export const Counter = (props: CounterPropsType) => {
                     error={props.error}
                 />
             </div>
-            <div>
+            <div className={css.btn_block}>
                 <Button
+                    className={css.btn}
                     name={'inc'}
                     onClick={props.incCounterValue}
                     disabled={disInc}
                 />
                 <Button
+                    className={css.btn}
                     name={'reset'}
                     onClick={props.resetCounterValue}
                     disabled={disReset}

@@ -1,10 +1,30 @@
 .counter_wrapper {
-    padding: 20px;
-    background-color: pink;
+    padding: 10px;
+    background-color: #E2859A ;
     margin: 0 20px;
-    width: 25%;
+    width: 300px;
+    border-radius: 5px;
+    border: 2px solid #575E97;
 }
 
 .display_wrapper {
-    padding: 10px 0;
+    height: 50px;
+    padding: 5px 10px 10px 10px;
+    border: 1px solid #575E97;
+    border-radius: 5px;
+}
+
+.btn_block {
+    display: flex;
+    align-items: center;
+justify-content: space-evenly;
+}
+
+.btn {
+    margin-top: 10px;
+    background-color: #575E97;
+    border: none;
+    border-radius: 3px;
+    color: #F5D7DF;
+
 }
