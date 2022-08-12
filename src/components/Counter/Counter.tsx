@@ -2,7 +2,6 @@ import React from 'react';
 import Button from "../Button";
 import {Display} from "./Display";
 import css from './Counter.module.css'
-import {deepStrictEqual} from "assert";
 
 type CounterPropsType = {
     value: number
