@@ -1,4 +1,6 @@
 import {ChangeEvent} from "react";
+import {Dispatch} from "redux";
+import {AppRootStateType} from "./store";
 
 
 export type initialStateType = {
@@ -100,3 +102,16 @@ export const setErrorAC = () => {
         type: 'SET-ERROR',
     } as const
 }
+
+
+//-------------------------------------------
+
+/*
+export const incCounterValueTC = () =>  (dispatch: Dispatch, getState: () => AppRootStateType) => {
+
+    let currentValue = getState().counterState.counterValue
+
+    localStorage.setItem('value', JSON.stringify(currentValue + 1))
+    dispatch(incCounterValueAC())
+
+}*/

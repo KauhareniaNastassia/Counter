@@ -44,6 +44,7 @@ function App() {
     }
 
     const incCounterValue = () => {
+
         dispatch(incCounterValueAC())
         //setCounterValue(counterValue + 1)
         /*localStorage.setItem('value', JSON.stringify(counterValue + 1))*/
